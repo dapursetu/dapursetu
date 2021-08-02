@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+{% block breadcrumb %}<li class="breadcrumb-item active" aria-current="page">{{ pembeli.pembeli|capfirst }}</li>{% endblock %}
+{% block container %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">List</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Add</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <p>Date : {{ pembeli.pub_date }}</p>
+    <table class="table table-sm font-weight-light"> 
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Control</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for data in datas %}
+      {% for menu in menus %}
+      {% ifequal menu.id data.menu_id %}
+      <tr>
+        <td>{{menu.nama|capfirst}}</td>
+        <td>{{menu.deskripsi|capfirst}}</td>
+        <td>{{ menu.harga|intcomma }}</td>
+        <td>
+          <form action="{% url 'account:delete' data.id pembeli.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info btn-sm btn-block">Delete</button>     
+          </form>
+        </td>
+      </tr>
+      {% endifequal %}
+      {% endfor %}
+      {% endfor %}
+      <tr>
+        <td></td>
+        <td>Total :</td>
+        <td>{{total|intcomma}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-info btn-sm btn-block">Add</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

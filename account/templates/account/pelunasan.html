@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block breadcrumb %}<li class="breadcrumb-item active" aria-current="page">Payment</li>{% endblock %}
+
+{% block container %}
+
+<p>Total : {{jumlah|intcomma}}</p>
+
+<form action="{% url 'account:pembayaran' datas.id jumlah %}" method="POST">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-info btn-sm btn-block">Pay</button>
+</form>
+
+
+{% endblock %}

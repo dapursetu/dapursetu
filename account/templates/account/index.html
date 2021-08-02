@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block container %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+      aria-selected="true">Menu</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+      aria-selected="false">Orders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history"
+      aria-selected="false">History</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <table class="table table-sm font-weight-light">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in daftar_menu %}
+        <tr>
+          <th scope="row">{{i.id}}</th>
+          <td>{{i.nama|capfirst}}</td>
+          <td>{{i.deskripsi|capfirst}}</td>
+          <td>{{i.harga|intcomma}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a class="btn badge-pill badge-info btn-block" href="{% url 'account:menu' %}">Add Menu</a>
+  </div>
+
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <table class="table table-sm font-weight-light">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Total</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in daftar_penjualan %}
+        <tr>
+          {% ifequal i.lunas 1 %}
+          {% else %}
+          <th scope="row">{{i.id}}</th>
+          <td><a href="{% url 'account:detail' i.id %}"
+              class="badge badge-pill badge-info btn-block">{{i.pembeli|capfirst }}</a></td>
+          <td>{{i.get_harga|intcomma}}</td>
+          <td><a href="{% url 'account:pelunasan' i.id %}" class="badge badge-pill badge-info btn-block">Payment</a>
+          </td>
+          {% endifequal %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a class="btn badge-pill badge-info btn-block" href="{% url 'account:penjualan' %}">Add Orders</a>
+  </div>
+  <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+    <table class="table table-sm font-weight-light">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Total</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in daftar_penjualan %}
+        {% ifequal i.lunas 1 %}
+        <tr>
+          <td>{{i.id}}</td>
+          <td>{{i.pembeli|capfirst}}</td>
+          <td>{{i.total|intcomma}}</td>
+          <td>{{i.pub_date}}</td>
+        </tr>
+        {% endifequal %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+{% endblock %}
