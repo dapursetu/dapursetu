@@ -13,6 +13,9 @@ urlpatterns = [
     path('<int:id>/<int:slug>/delete/', delete_detail,name='delete'),
     path('<int:id>/pelunasan', Pelunasan,name='pelunasan'),
     path('<int:id>/<int:jumlah_id>/pembayaran', Pembayaran,name='pembayaran'),
+    path('register/', register_request , name='register'),
+    path('login/', login_request, name='login'),
+    path('logout/', logout_request, name= 'logout'),
 ]
 
 if settings.DEBUG:
