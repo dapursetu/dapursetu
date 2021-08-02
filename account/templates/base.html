@@ -14,7 +14,7 @@
 </head>
 
 <body class="">
-
+  {% include 'navbar.html' %}
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="{% url 'account:index' %}">Home</a></li>
@@ -34,8 +34,6 @@
       {% block container %}{% endblock %}
     </div>
   </div>
-
-
 
   {% block script %}{% endblock %}
 

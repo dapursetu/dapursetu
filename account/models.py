@@ -34,9 +34,10 @@ class Menu(models.Model):
 
     class Meta:
         db_table = 'menu'
-
+    
     def __str__(self):
-        return self.deskripsi
+        ret = self.nama + ' - ' + self.deskripsi
+        return ret
 
 
 class PenjualanDetail(models.Model):
@@ -47,7 +48,8 @@ class PenjualanDetail(models.Model):
 
     class Meta:
         db_table = 'penjualandetail'
-
+'''
     def __str__(self):
         return self.qty
+'''
     
