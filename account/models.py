@@ -52,4 +52,3 @@ class PenjualanDetail(models.Model):
     def __str__(self):
         return self.qty
 '''
-    

@@ -65,7 +65,7 @@ def create_menu(request):
             return redirect("account:index")
     else:
         form = MenuForm()
-    return render(request, 'account/add_menu.html', {'form_menu': form,})
+    return render(request, 'account/add_menu.html', {'form': form,})
 @user_passes_test(lambda u: u.is_authenticated, login_url='account:login')
 def create_penjualan(request):
     new_form = None
@@ -79,7 +79,7 @@ def create_penjualan(request):
             return redirect("account:index")
     else:
         form = PenjualanForm()
-    return render(request, 'account/add_penjualan.html', {'form_penjualan': form,})
+    return render(request, 'account/add_penjualan.html', {'form': form,})
 @user_passes_test(lambda u: u.is_authenticated, login_url='account:login')
 def penjualan_detail(request,id):
     datas = PenjualanDetail.objects.filter(penjualan=id)

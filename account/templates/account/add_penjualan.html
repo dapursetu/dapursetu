@@ -4,7 +4,7 @@
 {% block container %}
 <form action="" method="POST">
   {% csrf_token %}
-  {{ form_penjualan.as_p }}
+  {{ form.as_p }}
   <button type="submit" class="btn btn-info btn-sm btn-block">Add</button>
 </form>
 {% endblock %}
