@@ -1,25 +1,20 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% block container %}
-<div class="float-left">Kasir : <strong>{{user.username|upper}}</strong></div>
-<br>
-<br>
-
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+    <a class="nav-link text-muted " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
       aria-selected="true">Menu</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+    <a class="nav-link text-muted" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
       aria-selected="false">Orders</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history"
+    <a class="nav-link text-muted" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history"
       aria-selected="false">History</a>
   </li>
 </ul>
-
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <table class="table table-sm font-weight-light">

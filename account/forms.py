@@ -14,9 +14,9 @@ class MenuForm(ModelForm):
         fields = ('nama', 'deskripsi', 'harga',)
         #widgets = {'pertanyaan_text': Input(attrs={'cols': 100, 'rows': 1}),}
         labels = {
-            'nama': _('Name'),
-            'deskripsi': _('Desc'),
-            'harga': _('Price'),
+            'nama': _(''),
+            'deskripsi': _(''),
+            'harga': _(''),
         }
         error_messages = {
             'nama': {
@@ -29,19 +29,24 @@ class MenuForm(ModelForm):
         widgets = {
             'nama': forms.TextInput(
                 attrs={
-                    'class': 'form-control form-control-sm'
+                    'class': 'form-control form-control-sm',
+                    'autocomplete': 'off',
+                    'placeholder': 'Name',
                 }
             ),
             'deskripsi': forms.Textarea(
                 attrs={
                     'class': 'form-control form-control-sm',
                     'rows': '6',
+                    'autocomplete': 'off',
+                    'placeholder': 'Description',
                     
                 }
             ),
             'harga': forms.TextInput(
                 attrs={
-                    'class': 'form-control form-control-sm'
+                    'class': 'form-control form-control-sm',
+                    'placeholder': 'Price'
                 }
             ),
         }
@@ -53,7 +58,7 @@ class PenjualanForm(ModelForm):
         model = Penjualan
         fields = ('pembeli',)
         labels = {
-            'pembeli': _('Customer Name'),
+            'pembeli': _(''),
         }
         error_messages = {
             'pembeli': {
@@ -63,7 +68,9 @@ class PenjualanForm(ModelForm):
         widgets = {
             'pembeli': forms.TextInput(
                 attrs={
-                    'class': 'form-control form-control-sm'
+                    'class': 'form-control form-control-sm',
+                    'autocomplete': 'off',
+                    'placeholder': 'Customer Name'
                 }
             ),
         }
@@ -73,7 +80,7 @@ class PenjualanDetailForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['menu'].widget.attrs.update(
-            {'class': 'custom-select mr-sm-2'})
+            {'class': 'custom-select mr-sm-2','autocomplete': 'off','placeholder': 'Menu'})
 
     class Meta:
         model = PenjualanDetail
