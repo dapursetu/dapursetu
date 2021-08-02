@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% load humanize %}
 {% block breadcrumb %}<li class="breadcrumb-item active" aria-current="page">{{ pembeli.pembeli|capfirst }}</li>{% endblock %}
 {% block container %}
@@ -53,7 +52,7 @@
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <form method="POST">
       {% csrf_token %}
-      {{ form|crispy }}
+      {{ form.as_p}}
       <button type="submit" class="btn btn-info btn-sm btn-block">Add</button>
     </form>
   </div>

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--e)ap2340gs+c(ss6g=0gsa(v@0q)=#-*b7#o&r%tb!3a@szh4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dapursetu.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'account',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
