@@ -3,11 +3,11 @@
 {% block container %}
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link text-muted " id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+    <a class="nav-link text-muted active " id="menu-tab" data-toggle="tab" href="#menu" role="tab" aria-controls="menu"
       aria-selected="true">Menu</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link text-muted" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+    <a class="nav-link text-muted" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders"
       aria-selected="false">Orders</a>
   </li>
   <li class="nav-item">
@@ -16,7 +16,7 @@
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div class="tab-pane fade show active" id="menu" role="tabpanel" aria-labelledby="menu-tab">
     <table class="table table-sm font-weight-light">
       <thead>
         <tr>
@@ -39,7 +39,8 @@
     </table>
     <a class="btn badge-pill badge-info btn-block" href="{% url 'account:menu' %}">Add Menu</a>
   </div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  
+  <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
     <table class="table table-sm font-weight-light">
       <thead>
         <tr>
@@ -67,6 +68,7 @@
     </table>
     <a class="btn badge-pill badge-info btn-block" href="{% url 'account:penjualan' %}">Add Orders</a>
   </div>
+  
   <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
     <table class="table table-sm font-weight-light">
       <thead>
