@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block breadcrumb %}<li class="breadcrumb-item active" aria-current="page">Items</li>{% endblock %}
+
+{% block container %}
+<form action="" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-info btn-sm btn-block">Save</button>
+</form>
+
+<table class="table table-sm font-weight-light">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Item name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for barang in data %}
+  <tr>
+    <th scope="row">{{barang.id}}</th>
+    <td>{{barang.nama_barang}}</td>
+    <td>{{barang.harga}}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+{% endblock %}

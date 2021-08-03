@@ -16,6 +16,8 @@ urlpatterns = [
     path('register/', register_request , name='register'),
     path('login/', login_request, name='login'),
     path('logout/', logout_request, name= 'logout'),
+    path('barang/', create_barang, name= 'barang'),
+    path('pengeluaran/', create_pengeluaran, name= 'pengeluaran'),
 ]
 
 if settings.DEBUG:

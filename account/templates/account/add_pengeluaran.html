@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block breadcrumb %}<li class="breadcrumb-item active" aria-current="page">Expenses</li>{% endblock %}
+
+{% block container %}
+<form action="" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-info btn-sm btn-block">Add</button>
+</form>
+<table class="table table-sm font-weight-light">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for pengeluaran in data %}
+  <tr>
+    <th scope="row">{{pengeluaran.id}}</th>
+    <td>{{pengeluaran.barang}}</td>
+    <td>{{pengeluaran.keterangan}}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+{% endblock %}

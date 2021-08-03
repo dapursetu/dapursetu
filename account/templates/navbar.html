@@ -10,6 +10,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'account:logout' %}">Logout | {{user.username|upper}}<span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'account:barang' %}">Items<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'account:pengeluaran' %}">Expenses<span class="sr-only">(current)</span></a>
+      </li>
       {% else %}
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'account:logout' %}">Login<span class="sr-only">(current)</span></a>

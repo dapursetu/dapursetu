@@ -81,7 +81,7 @@
         {% for i in daftar_penjualan %}
         {% ifequal i.lunas 1 %}
         <tr>
-          <td>{{i.id}}</td>
+          <td scope="row">{{i.id}}</td>
           <td>{{i.pembeli|capfirst}}</td>
           <td>{{i.total|intcomma}}</td>
           <td>{{i.pub_date}}</td>

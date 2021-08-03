@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
-from .models import Menu, Penjualan, PenjualanDetail
+from .models import Barang, Menu, Pengeluaran, Penjualan, PenjualanDetail
 
 
 class MenuForm(ModelForm):
@@ -105,3 +105,48 @@ class NewUserForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class BarangForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nama_barang'].widget.attrs.update({
+            'class': 'form-control form-control-sm',
+            'autocomplete': 'off',
+            'placeholder': 'Items Name',
+            })
+        self.fields['harga'].widget.attrs.update({
+            'class': 'form-control form-control-sm',
+            'autocomplete': 'off',
+            'placeholder': 'Price',
+            })
+
+    class Meta:
+        model = Barang
+        fields = ('nama_barang','harga',)
+        labels = {
+            'nama_barang': _(''),
+            'harga': _(''),
+        }
+
+class PengeluaranForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['keterangan'].queryset = Penjualan.objects.filter(lunas='0')
+        self.fields['barang'].widget.attrs.update({
+            'class': 'custom-select mr-sm-2',
+            'autocomplete': 'off',
+            'placeholder': 'Items Name',
+            })
+        self.fields['keterangan'].widget.attrs.update({
+            'class': 'custom-select mr-sm-2',
+            'autocomplete': 'off',
+            'placeholder': 'Descriptions',
+            })
+
+    class Meta:
+        model = Pengeluaran
+        fields = ('barang','keterangan',)
+        labels = {
+            'barang': _(''),
+            'keterangan': _(''),
+        }

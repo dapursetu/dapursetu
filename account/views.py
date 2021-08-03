@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import MenuForm, PenjualanDetailForm,PenjualanForm
-from .models import Menu,Penjualan, PenjualanDetail
+from .forms import BarangForm, MenuForm, PengeluaranForm, PenjualanDetailForm,PenjualanForm
+from .models import Barang, Menu, Pengeluaran,Penjualan, PenjualanDetail
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -133,3 +133,35 @@ def Pembayaran(request,id,jumlah_id):
     obj.save()
     messages.success(request, "Payment success.")
     return redirect("account:index")
+
+@user_passes_test(lambda u: u.is_authenticated, login_url='account:login')
+def create_barang(request):
+    data = Barang.objects.all()
+    new_form = None
+    if request.method == 'POST':
+        form = BarangForm(data=request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.user = request.user
+            new_form.save()
+            messages.success(request, "Saved.")
+            return redirect("account:barang")
+    else:
+        form = BarangForm()
+    return render(request, 'account/add_barang.html', {'form': form,'data':data})
+
+@user_passes_test(lambda u: u.is_authenticated, login_url='account:login')
+def create_pengeluaran(request):
+    data = Pengeluaran.objects.all()
+    new_form = None
+    if request.method == 'POST':
+        form = PengeluaranForm(data=request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.user = request.user
+            new_form.save()
+            messages.success(request, "Saved.")
+            return redirect("account:pengeluaran")
+    else:
+        form = PengeluaranForm()
+    return render(request, 'account/add_pengeluaran.html', {'form': form,'data':data})

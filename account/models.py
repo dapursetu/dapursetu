@@ -52,3 +52,29 @@ class PenjualanDetail(models.Model):
     def __str__(self):
         return self.qty
 '''
+class Barang(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='barangs')
+    nama_barang = models.CharField(max_length=255)
+    qty = models.IntegerField(default=0,null=True)
+    harga = models.IntegerField(default=0,null=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'barang'
+
+    def __str__(self):
+        ret = self.nama_barang + ' - ' + str(self.harga)
+        return ret
+
+class Pengeluaran(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='pengeluarans')
+    barang = models.ForeignKey(Barang, on_delete=models.CASCADE, related_name='pengeluarans')
+    keterangan = models.ForeignKey(Penjualan, on_delete=models.CASCADE, related_name='pengeluarans')
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'pengeluaran'
+
+    def __str__(self):
+        ret = self.keterangan
+        return ret
